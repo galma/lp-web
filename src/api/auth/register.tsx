@@ -9,8 +9,9 @@ export type RegisterCredentialsDTO = {
   lastName: string;
 };
 
-export const registerWithEmailAndPassword = (
+export const registerWithEmailAndPassword = async (
   data: RegisterCredentialsDTO
 ): Promise<UserResponse> => {
-  return axios.post("/auth/register", data);
+  const result = await axios.post("/auth/register", data);
+  return result?.data;
 };

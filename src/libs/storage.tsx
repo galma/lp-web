@@ -2,12 +2,14 @@ const storagePrefix = "lp_web_";
 
 const storage = {
   getToken: () => {
-    return JSON.parse(
-      window.localStorage.getItem(`${storagePrefix}token`) as string
-    );
+    const token = window.localStorage.getItem(
+      `${storagePrefix}token`
+    ) as string;
+
+    return token && !["null", "undefined"].includes(token) ? token : null;
   },
   setToken: (token: string) => {
-    window.localStorage.setItem(`${storagePrefix}token`, JSON.stringify(token));
+    window.localStorage.setItem(`${storagePrefix}token`, token);
   },
   clearToken: () => {
     window.localStorage.removeItem(`${storagePrefix}token`);

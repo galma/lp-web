@@ -39,6 +39,7 @@ async function loadUser() {
 
 async function login(data: LoginCredentialsDTO): Promise<AuthUser | null> {
   const response = await loginWithEmailAndPassword(data);
+  debugger;
   const user = await handleUserResponse(response);
   return user;
 }
