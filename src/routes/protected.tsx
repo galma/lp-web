@@ -1,3 +1,4 @@
+import Dashboard from "@/pages/dashboard/Dashboard";
 import { Navigate, Outlet } from "react-router-dom";
 
 const ProtectedRoutesWrapper = () => {
@@ -7,12 +8,16 @@ const ProtectedRoutesWrapper = () => {
 const basePath = "/app";
 export const protectedRoutes = [
   {
-    path: basePath,
+    path: "app/*",
     element: <ProtectedRoutesWrapper />,
     children: [
-      { path: `${basePath}/test`, element: <div>test 123</div> },
-      { path: `${basePath}/`, element: <div>Dashboard</div> },
-      { path: `${basePath}/*`, element: <Navigate to="/app" /> },
+      { path: ``, element: <Dashboard /> },
+      { path: `test`, element: <div>test 123</div> },
+      { path: `*`, element: <Navigate to="/app" /> },
     ],
+  },
+  {
+    path: "*",
+    element: <Navigate to="/app" replace />,
   },
 ];
