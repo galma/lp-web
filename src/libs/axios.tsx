@@ -4,6 +4,7 @@ import MockAdapter from "axios-mock-adapter";
 // import { API_URL } from '@/config';
 // import { useNotificationStore } from '@/stores/notifications';
 import storage from "@/libs/storage";
+import { OperationResponse } from "@/types/operation";
 
 const API_URL = "http://localhost:5000/api";
 
@@ -40,7 +41,6 @@ axios.interceptors.request.use(authRequestInterceptor);
 
 //TODO setup env variable control
 if (true) {
-  debugger;
   var mock = new MockAdapter(axios, { delayResponse: 1000 });
 
   mock.onPost("/auth/login").reply(200, {
@@ -59,6 +59,11 @@ if (true) {
     firstName: "Test",
     lastName: "Test",
   });
+
+  mock.onPost("/operation/add").reply(200, {
+    remainingBalance: 100,
+    result: 2.6,
+  } as OperationResponse);
 }
 
 export { axios };

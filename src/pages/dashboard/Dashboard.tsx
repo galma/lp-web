@@ -1,12 +1,14 @@
-import { useLogout } from "@/providers/auth";
+import { useLogout, useUser } from "@/providers/auth";
 import { useNavigate } from "react-router-dom";
 
 const Dashboard: React.FC = () => {
   const logout = useLogout();
   const navigate = useNavigate();
+  const user = useUser();
+
+  debugger;
 
   const onLogout = () => {
-    console.log("logout");
     logout.mutate(
       {},
       {
@@ -21,6 +23,29 @@ const Dashboard: React.FC = () => {
     <div>
       <h1>Dashboard</h1>
       <button onClick={onLogout}>Logout</button>
+      <div>
+        Welcome {user.data?.firstName} {user.data?.lastName}
+      </div>
+      <ul>
+        <li>
+          <button
+            onClick={() => {
+              navigate("/app/operations");
+            }}
+          >
+            New Operation
+          </button>
+        </li>
+        <li>
+          <button
+            onClick={() => {
+              navigate("/app/user-records");
+            }}
+          >
+            User Records
+          </button>
+        </li>
+      </ul>
     </div>
   );
 };
