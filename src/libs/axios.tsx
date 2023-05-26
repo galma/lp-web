@@ -64,6 +64,11 @@ if (true) {
     remainingBalance: 100,
     result: 2.6,
   } as OperationResponse);
+
+  mock.onPost("/operation/substract").reply(200, {
+    remainingBalance: 50,
+    result: -52.6,
+  } as OperationResponse);
 }
 
 export { axios };

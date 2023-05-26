@@ -1,4 +1,5 @@
 import Addition from "@/components/operations/addition";
+import Substraction from "@/components/operations/subtraction";
 import { ChangeEvent, ChangeEventHandler, useState } from "react";
 
 const Operations: React.FC = () => {
@@ -26,7 +27,7 @@ const Operations: React.FC = () => {
     {
       type: Operations.Subtraction,
       description: "Subtraction",
-      component: <div>Addition</div>,
+      component: <Substraction />,
     },
     {
       type: Operations.Multiplication,
