@@ -74,6 +74,11 @@ if (true) {
     remainingBalance: 50,
     result: 4,
   } as OperationResponse);
+
+  mock.onPost("/operation/square-root").reply(200, {
+    remainingBalance: 505,
+    result: 9,
+  } as OperationResponse);
 }
 
 export { axios };
