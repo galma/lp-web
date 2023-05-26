@@ -68,7 +68,7 @@ if (true) {
     result: 2.6,
   } as NumericOperationResponse);
 
-  mock.onPost("/operation/substract").reply(200, {
+  mock.onPost("/operation/subtract").reply(200, {
     remainingBalance: 50,
     result: -52.6,
   } as NumericOperationResponse);

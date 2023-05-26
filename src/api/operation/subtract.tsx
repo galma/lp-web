@@ -5,9 +5,9 @@ import {
   TwoNumberOperationDTO,
 } from "@/types/operation";
 
-export const substract = async (
+export const subtract = async (
   data: TwoNumberOperationDTO
 ): Promise<NumericOperationResponse> => {
-  const result = await axios.post("/operation/substract", data);
+  const result = await axios.post("/operation/subtract", data);
   return result?.data;
 };
