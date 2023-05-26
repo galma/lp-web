@@ -13,8 +13,14 @@ const ArithmeticOperation: React.FC<OperationProps> = ({
   operationName,
   validation,
   requiresTwoNumbers,
+  customValidationNumber1,
+  customValidationNumber2,
 }) => {
-  const { handleSubmit, control } = useForm<NumericOperationFormData>();
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+  } = useForm<NumericOperationFormData>();
 
   const mutation = useMutation<
     NumericOperationResponse,
@@ -48,9 +54,16 @@ const ArithmeticOperation: React.FC<OperationProps> = ({
             name="number1"
             defaultValue={0}
             control={control}
-            rules={{ required: true }}
+            //@ts-ignore
+            rules={{
+              required: true,
+              ...(customValidationNumber1 && {
+                validate: customValidationNumber1,
+              }),
+            }}
             render={({ field }) => <input type="number" {...field} />}
           />
+          {errors.number1 && <p>{errors.number1.message}</p>}{" "}
         </div>
 
         {requiresTwoNumbers && (
@@ -60,9 +73,16 @@ const ArithmeticOperation: React.FC<OperationProps> = ({
               name="number2"
               control={control}
               defaultValue={0}
-              rules={{ required: true }}
+              //@ts-ignore
+              rules={{
+                required: true,
+                ...(customValidationNumber2 && {
+                  validate: customValidationNumber2,
+                }),
+              }}
               render={({ field }) => <input type="number" {...field} />}
             />
+            {errors.number2 && <p>{errors.number2.message}</p>}{" "}
           </div>
         )}
 

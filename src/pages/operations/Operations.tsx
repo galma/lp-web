@@ -1,12 +1,10 @@
-import { add } from "@/api/operation/add";
 import Addition from "@/components/operations/addition";
-import ArithmeticOperation from "@/components/operations/arithmeticOperation";
 import Division from "@/components/operations/division";
 import Multiplication from "@/components/operations/multiplication";
 import RandomString from "@/components/operations/randomString";
 import SquareRoot from "@/components/operations/squareRoot";
 import Subtraction from "@/components/operations/subtraction";
-import { ChangeEvent, ChangeEventHandler, useState } from "react";
+import { ChangeEvent, useState } from "react";
 
 const Operations: React.FC = () => {
   enum Operations {
@@ -28,13 +26,7 @@ const Operations: React.FC = () => {
     {
       type: Operations.Addition,
       description: "Addition",
-      component: (
-        <ArithmeticOperation
-          operation={add}
-          operationName="Addition"
-          requiresTwoNumbers={true}
-        />
-      ),
+      component: <Addition />,
     },
     {
       type: Operations.Subtraction,

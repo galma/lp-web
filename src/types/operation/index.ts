@@ -29,6 +29,8 @@ export interface OperationProps {
     dto: TwoNumberOperationDTO | OneNumberOperationDTO
   ) => Promise<NumericOperationResponse>;
   operationName: string;
+  customValidationNumber1?: (value: number) => void | string;
+  customValidationNumber2?: (value: number) => void | string;
   validation?: (data: NumericOperationFormData) => boolean;
   requiresTwoNumbers: boolean;
 }
