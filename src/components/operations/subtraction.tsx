@@ -1,5 +1,8 @@
-import { SubstractOperationDTO, substract } from "@/api/operation/substract";
-import { OperationResponse } from "@/types/operation";
+import { substract } from "@/api/operation/substract";
+import {
+  NumericOperationResponse,
+  TwoNumberOperationDTO,
+} from "@/types/operation";
 import { useMutation } from "@tanstack/react-query";
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
@@ -13,13 +16,13 @@ const Substraction: React.FC = () => {
   const { handleSubmit, control } = useForm<FormData>();
 
   const mutation = useMutation<
-    OperationResponse,
+    NumericOperationResponse,
     unknown,
-    SubstractOperationDTO
+    TwoNumberOperationDTO
   >(substract);
 
   const onSubmit = async (data: FormData) => {
-    const dto: SubstractOperationDTO = {
+    const dto: TwoNumberOperationDTO = {
       number1: Number(data.number1),
       number2: Number(data.number2),
     };

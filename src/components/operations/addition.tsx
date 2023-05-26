@@ -1,5 +1,8 @@
-import { AddOperationDTO, add } from "@/api/operation/add";
-import { OperationResponse } from "@/types/operation";
+import { add } from "@/api/operation/add";
+import {
+  NumericOperationResponse,
+  TwoNumberOperationDTO,
+} from "@/types/operation";
 import { useMutation } from "@tanstack/react-query";
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
@@ -12,12 +15,14 @@ interface FormData {
 const Addition: React.FC = () => {
   const { handleSubmit, control } = useForm<FormData>();
 
-  const mutation = useMutation<OperationResponse, unknown, AddOperationDTO>(
-    add
-  );
+  const mutation = useMutation<
+    NumericOperationResponse,
+    unknown,
+    TwoNumberOperationDTO
+  >(add);
 
   const onSubmit = async (data: FormData) => {
-    const dto: AddOperationDTO = {
+    const dto: TwoNumberOperationDTO = {
       number1: Number(data.number1),
       number2: Number(data.number2),
     };

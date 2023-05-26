@@ -1,9 +1,8 @@
-import { DivisionOperationDTO, divide } from "@/api/operation/division";
+import { divide } from "@/api/operation/division";
 import {
-  MultiplicationOperationDTO,
-  multiply,
-} from "@/api/operation/multiplication";
-import { OperationResponse } from "@/types/operation";
+  NumericOperationResponse,
+  TwoNumberOperationDTO,
+} from "@/types/operation";
 import { useMutation } from "@tanstack/react-query";
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
@@ -21,13 +20,13 @@ const Division: React.FC = () => {
   } = useForm<FormData>();
 
   const mutation = useMutation<
-    OperationResponse,
+    NumericOperationResponse,
     unknown,
-    DivisionOperationDTO
+    TwoNumberOperationDTO
   >(divide);
 
   const onSubmit = async (data: FormData) => {
-    const dto: DivisionOperationDTO = {
+    const dto: TwoNumberOperationDTO = {
       number1: Number(data.number1),
       number2: Number(data.number2),
     };

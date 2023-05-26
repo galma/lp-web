@@ -1,8 +1,8 @@
+import { multiply } from "@/api/operation/multiplication";
 import {
-  MultiplicationOperationDTO,
-  multiply,
-} from "@/api/operation/multiplication";
-import { OperationResponse } from "@/types/operation";
+  NumericOperationResponse,
+  TwoNumberOperationDTO,
+} from "@/types/operation";
 import { useMutation } from "@tanstack/react-query";
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
@@ -16,13 +16,13 @@ const Multiplication: React.FC = () => {
   const { handleSubmit, control } = useForm<FormData>();
 
   const mutation = useMutation<
-    OperationResponse,
+    NumericOperationResponse,
     unknown,
-    MultiplicationOperationDTO
+    TwoNumberOperationDTO
   >(multiply);
 
   const onSubmit = async (data: FormData) => {
-    const dto: MultiplicationOperationDTO = {
+    const dto: TwoNumberOperationDTO = {
       number1: Number(data.number1),
       number2: Number(data.number2),
     };

@@ -4,7 +4,10 @@ import MockAdapter from "axios-mock-adapter";
 // import { API_URL } from '@/config';
 // import { useNotificationStore } from '@/stores/notifications';
 import storage from "@/libs/storage";
-import { OperationResponse, StringOperationResponse } from "@/types/operation";
+import {
+  NumericOperationResponse,
+  StringOperationResponse,
+} from "@/types/operation";
 
 const API_URL = "http://localhost:5000/api";
 
@@ -63,22 +66,22 @@ if (true) {
   mock.onPost("/operation/add").reply(200, {
     remainingBalance: 100,
     result: 2.6,
-  } as OperationResponse);
+  } as NumericOperationResponse);
 
   mock.onPost("/operation/substract").reply(200, {
     remainingBalance: 50,
     result: -52.6,
-  } as OperationResponse);
+  } as NumericOperationResponse);
 
   mock.onPost("/operation/divide").reply(200, {
     remainingBalance: 50,
     result: 4,
-  } as OperationResponse);
+  } as NumericOperationResponse);
 
   mock.onPost("/operation/square-root").reply(200, {
     remainingBalance: 505,
     result: 9,
-  } as OperationResponse);
+  } as NumericOperationResponse);
 
   mock.onGet("/operation/random-string").reply(200, {
     remainingBalance: 505,

@@ -1,15 +1,13 @@
 import { axios } from "@/libs/axios";
 
-import { OperationResponse } from "@/types/operation";
-
-export type SubstractOperationDTO = {
-  number1: number;
-  number2: number;
-};
+import {
+  NumericOperationResponse,
+  TwoNumberOperationDTO,
+} from "@/types/operation";
 
 export const substract = async (
-  data: SubstractOperationDTO
-): Promise<OperationResponse> => {
+  data: TwoNumberOperationDTO
+): Promise<NumericOperationResponse> => {
   const result = await axios.post("/operation/substract", data);
   return result?.data;
 };

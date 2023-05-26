@@ -1,6 +1,6 @@
 import { axios } from "@/libs/axios";
 
-import { OperationResponse, StringOperationResponse } from "@/types/operation";
+import { StringOperationResponse } from "@/types/operation";
 
 export const generateRandomString =
   async (): Promise<StringOperationResponse> => {

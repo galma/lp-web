@@ -1,9 +1,8 @@
+import { squareRoot } from "@/api/operation/squareRoot";
 import {
-  MultiplicationOperationDTO,
-  multiply,
-} from "@/api/operation/multiplication";
-import { SquareRootOperationDTO, squareRoot } from "@/api/operation/squareRoot";
-import { OperationResponse } from "@/types/operation";
+  NumericOperationResponse,
+  OneNumberOperationDTO,
+} from "@/types/operation";
 import { useMutation } from "@tanstack/react-query";
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
@@ -20,13 +19,13 @@ const Multiplication: React.FC = () => {
   } = useForm<FormData>();
 
   const mutation = useMutation<
-    OperationResponse,
+    NumericOperationResponse,
     unknown,
-    SquareRootOperationDTO
+    OneNumberOperationDTO
   >(squareRoot);
 
   const onSubmit = async (data: FormData) => {
-    const dto: SquareRootOperationDTO = {
+    const dto: OneNumberOperationDTO = {
       number: Number(data.number),
     };
 
