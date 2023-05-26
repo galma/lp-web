@@ -1,6 +1,7 @@
 import Addition from "@/components/operations/addition";
 import Division from "@/components/operations/division";
 import Multiplication from "@/components/operations/multiplication";
+import RandomString from "@/components/operations/randomString";
 import SquareRoot from "@/components/operations/squareRoot";
 import Substraction from "@/components/operations/subtraction";
 import { ChangeEvent, ChangeEventHandler, useState } from "react";
@@ -50,7 +51,7 @@ const Operations: React.FC = () => {
     {
       type: Operations.RandomString,
       description: "Random String Generation",
-      component: <div>Addition</div>,
+      component: <RandomString />,
     },
   ];
 

@@ -4,7 +4,7 @@ import MockAdapter from "axios-mock-adapter";
 // import { API_URL } from '@/config';
 // import { useNotificationStore } from '@/stores/notifications';
 import storage from "@/libs/storage";
-import { OperationResponse } from "@/types/operation";
+import { OperationResponse, StringOperationResponse } from "@/types/operation";
 
 const API_URL = "http://localhost:5000/api";
 
@@ -79,6 +79,11 @@ if (true) {
     remainingBalance: 505,
     result: 9,
   } as OperationResponse);
+
+  mock.onGet("/operation/random-string").reply(200, {
+    remainingBalance: 505,
+    result: "asdasdsa",
+  } as StringOperationResponse);
 }
 
 export { axios };
