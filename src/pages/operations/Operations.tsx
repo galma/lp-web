@@ -1,4 +1,6 @@
 import Addition from "@/components/operations/addition";
+import Division from "@/components/operations/division";
+import Multiplication from "@/components/operations/multiplication";
 import Substraction from "@/components/operations/subtraction";
 import { ChangeEvent, ChangeEventHandler, useState } from "react";
 
@@ -32,12 +34,12 @@ const Operations: React.FC = () => {
     {
       type: Operations.Multiplication,
       description: "Multiplication",
-      component: <div>Addition</div>,
+      component: <Multiplication />,
     },
     {
       type: Operations.Division,
       description: "Division",
-      component: <div>Addition</div>,
+      component: <Division />,
     },
     {
       type: Operations.SquareRoot,

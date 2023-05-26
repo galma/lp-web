@@ -6,8 +6,6 @@ const Dashboard: React.FC = () => {
   const navigate = useNavigate();
   const user = useUser();
 
-  debugger;
-
   const onLogout = () => {
     logout.mutate(
       {},

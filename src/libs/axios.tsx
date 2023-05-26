@@ -69,6 +69,11 @@ if (true) {
     remainingBalance: 50,
     result: -52.6,
   } as OperationResponse);
+
+  mock.onPost("/operation/divide").reply(200, {
+    remainingBalance: 50,
+    result: 4,
+  } as OperationResponse);
 }
 
 export { axios };
