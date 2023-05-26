@@ -1,4 +1,6 @@
+import { add } from "@/api/operation/add";
 import Addition from "@/components/operations/addition";
+import ArithmeticOperation from "@/components/operations/arithmeticOperation";
 import Division from "@/components/operations/division";
 import Multiplication from "@/components/operations/multiplication";
 import RandomString from "@/components/operations/randomString";
@@ -26,7 +28,13 @@ const Operations: React.FC = () => {
     {
       type: Operations.Addition,
       description: "Addition",
-      component: <Addition />,
+      component: (
+        <ArithmeticOperation
+          operation={add}
+          operationName="Addition"
+          requiresTwoNumbers={true}
+        />
+      ),
     },
     {
       type: Operations.Subtraction,

@@ -26,7 +26,7 @@ const Multiplication: React.FC = () => {
 
   const onSubmit = async (data: FormData) => {
     const dto: OneNumberOperationDTO = {
-      number: Number(data.number),
+      number1: Number(data.number),
     };
 
     const result = await mutation.mutateAsync(dto);
