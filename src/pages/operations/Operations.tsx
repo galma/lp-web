@@ -3,7 +3,7 @@ import Division from "@/components/operations/division";
 import Multiplication from "@/components/operations/multiplication";
 import RandomString from "@/components/operations/randomString";
 import SquareRoot from "@/components/operations/squareRoot";
-import Substraction from "@/components/operations/subtraction";
+import Subtraction from "@/components/operations/subtraction";
 import { ChangeEvent, ChangeEventHandler, useState } from "react";
 
 const Operations: React.FC = () => {
@@ -31,7 +31,7 @@ const Operations: React.FC = () => {
     {
       type: Operations.Subtraction,
       description: "Subtraction",
-      component: <Substraction />,
+      component: <Subtraction />,
     },
     {
       type: Operations.Multiplication,

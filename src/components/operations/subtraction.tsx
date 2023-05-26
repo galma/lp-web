@@ -12,7 +12,7 @@ interface FormData {
   number2: number;
 }
 
-const Substraction: React.FC = () => {
+const Subtraction: React.FC = () => {
   const { handleSubmit, control } = useForm<FormData>();
 
   const mutation = useMutation<
@@ -68,4 +68,4 @@ const Substraction: React.FC = () => {
   );
 };
 
-export default Substraction;
+export default Subtraction;
