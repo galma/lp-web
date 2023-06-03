@@ -1,11 +1,12 @@
 export type AuthUser = {
   id: string;
-  email: string;
-  firstName: string;
-  lastName: string;
+  remainingBalance: number;
+  // email: string;
+  // firstName: string;
+  // lastName: string;
 };
 
 export type UserResponse = {
-  jwt: string;
+  token: string;
   user: AuthUser;
 };

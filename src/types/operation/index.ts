@@ -12,11 +12,13 @@ type OperationResponse = {
 
 export type OneNumberOperationDTO = {
   number1: number;
+  userId: string;
 };
 
 export type TwoNumberOperationDTO = {
   number1: number;
   number2?: number;
+  userId: string;
 };
 
 export interface NumericOperationFormData {

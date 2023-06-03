@@ -22,7 +22,8 @@ const Dashboard: React.FC = () => {
       <h1>Dashboard</h1>
       <button onClick={onLogout}>Logout</button>
       <div>
-        Welcome {user.data?.firstName} {user.data?.lastName}
+        {/* Welcome {user.data?.firstName} {user.data?.lastName} */}
+        Welcome
       </div>
       <ul>
         <li>

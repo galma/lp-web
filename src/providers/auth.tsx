@@ -23,8 +23,8 @@ import {
 import { getUser } from "@/api/auth/getUser";
 
 async function handleUserResponse(data: UserResponse) {
-  const { jwt, user } = data;
-  storage.setToken(jwt);
+  const { token, user } = data;
+  storage.setToken(token);
   return user;
 }
 

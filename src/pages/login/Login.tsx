@@ -1,6 +1,7 @@
 import { LoginCredentialsDTO } from "@/api/auth/login";
+import { UserContext } from "@/contexts/UserContext";
 import { useLogin } from "@/providers/auth";
-import React from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
@@ -16,6 +17,8 @@ const Login: React.FC = () => {
     formState: { errors },
   } = useForm<LoginFormInputs>();
 
+  const { handleSignIn } = useContext(UserContext);
+
   const login = useLogin();
 
   const navigate = useNavigate();
@@ -27,7 +30,8 @@ const Login: React.FC = () => {
         password: data.password,
       } as LoginCredentialsDTO,
       {
-        onSuccess: () => {
+        onSuccess: (data) => {
+          handleSignIn({ id: data?.id, balance: data.remainingBalance });
           navigate("/app");
         },
       }

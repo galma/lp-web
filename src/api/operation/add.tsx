@@ -8,6 +8,6 @@ import {
 export const add = async (
   data: TwoNumberOperationDTO
 ): Promise<NumericOperationResponse> => {
-  const result = await axios.post("/operation/add", data);
+  const result = await axios.post("/operations/add", data);
   return result?.data;
 };

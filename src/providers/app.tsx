@@ -4,6 +4,7 @@ import { ErrorBoundary } from "react-error-boundary";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "@/libs/react-query";
 import { BrowserRouter } from "react-router-dom";
+import { UserProvider } from "@/contexts/UserContext";
 
 type AppProviderProps = {
   children: React.ReactNode;
@@ -31,14 +32,16 @@ export const AppProvider = ({ children }: AppProviderProps) => {
     //     </div>
     //   }
     // >
-    <ErrorBoundary FallbackComponent={ErrorFallback}>
-      <QueryClientProvider client={queryClient}>
-        {/* {process.env.NODE_ENV !== 'test' && <ReactQueryDevtools />} */}
-        {/* <Notifications /> */}
+    <UserProvider>
+      <ErrorBoundary FallbackComponent={ErrorFallback}>
+        <QueryClientProvider client={queryClient}>
+          {/* {process.env.NODE_ENV !== 'test' && <ReactQueryDevtools />} */}
+          {/* <Notifications /> */}
 
-        <BrowserRouter>{children}</BrowserRouter>
-      </QueryClientProvider>
-    </ErrorBoundary>
+          <BrowserRouter>{children}</BrowserRouter>
+        </QueryClientProvider>
+      </ErrorBoundary>
+    </UserProvider>
     // </React.Suspense>
   );
 };

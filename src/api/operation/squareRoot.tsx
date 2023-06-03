@@ -8,6 +8,6 @@ import {
 export const squareRoot = async (
   data: OneNumberOperationDTO
 ): Promise<NumericOperationResponse> => {
-  const result = await axios.post("/operation/square-root", data);
+  const result = await axios.post("/operations/square-root", data);
   return result?.data;
 };

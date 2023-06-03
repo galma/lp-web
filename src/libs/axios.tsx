@@ -9,12 +9,12 @@ import {
   StringOperationResponse,
 } from "@/types/operation";
 
-const API_URL = "http://localhost:5000/api";
+const API_URL = "http://localhost:3000";
 
 function authRequestInterceptor(config: InternalAxiosRequestConfig) {
   const token = storage.getToken();
   if (token) {
-    config.headers.authorization = `${token}`;
+    config.headers.authorization = `Bearer ${token}`;
   }
   config.headers.Accept = "application/json";
   return config;
@@ -43,7 +43,7 @@ axios.interceptors.request.use(authRequestInterceptor);
 // );
 
 //TODO setup env variable control
-if (true) {
+if (false) {
   var mock = new MockAdapter(axios, { delayResponse: 1000 });
 
   mock.onPost("/auth/login").reply(200, {

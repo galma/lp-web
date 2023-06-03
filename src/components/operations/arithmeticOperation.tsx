@@ -1,3 +1,4 @@
+import { UserContext } from "@/contexts/UserContext";
 import {
   NumericOperationFormData,
   NumericOperationResponse,
@@ -6,6 +7,7 @@ import {
   TwoNumberOperationDTO,
 } from "@/types/operation";
 import { useMutation } from "@tanstack/react-query";
+import { useContext } from "react";
 import { Controller, useForm } from "react-hook-form";
 
 const ArithmeticOperation: React.FC<OperationProps> = ({
@@ -22,6 +24,9 @@ const ArithmeticOperation: React.FC<OperationProps> = ({
     formState: { errors },
   } = useForm<NumericOperationFormData>();
 
+  const { userId } = useContext(UserContext);
+  debugger;
+
   const mutation = useMutation<
     NumericOperationResponse,
     unknown,
@@ -35,6 +40,7 @@ const ArithmeticOperation: React.FC<OperationProps> = ({
     }
 
     const dto: OneNumberOperationDTO | TwoNumberOperationDTO = {
+      userId,
       number1: Number(data.number1),
       ...(requiresTwoNumbers && {
         number2: Number(data.number2),
