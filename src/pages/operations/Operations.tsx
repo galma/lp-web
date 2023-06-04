@@ -73,6 +73,9 @@ const Operations: React.FC = () => {
           onChange={handleOperationSelection}
           className="block appearance-none w-full border border-gray-300 bg-white px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:border-blue-500 focus:shadow-outline-blue"
         >
+          <option disabled selected>
+            Select an option
+          </option>
           {options.map((option) => (
             <option key={option.type} value={option.type}>
               {option.description}

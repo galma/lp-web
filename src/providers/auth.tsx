@@ -71,10 +71,3 @@ const authConfig = {
 
 export const { useUser, useLogin, useRegister, useLogout, AuthLoader } =
   configureAuth(authConfig);
-
-// export const { AuthProvider, useAuth } = configureAuth<
-//   AuthUser | null,
-//   unknown,
-//   LoginCredentialsDTO,
-//   RegisterCredentialsDTO
-// >(authConfig);

@@ -1,5 +1,6 @@
+import { UserContext } from "@/contexts/UserContext";
 import { useUser } from "@/providers/auth";
-import React from "react";
+import React, { useContext } from "react";
 import { Navigate, Outlet, useRoutes } from "react-router-dom";
 
 const RoutesWrapper = () => {
@@ -72,6 +73,12 @@ export const privateRoutes = ({
 
 const AppRoutes = () => {
   const { data: user } = useUser();
+
+  const { handleSignIn } = useContext(UserContext);
+
+  if (!!user) {
+    handleSignIn({ id: user?.id, balance: user.remainingBalance });
+  }
 
   const element = useRoutes([
     ...publicRoutes({ isAutenticated: !!user }),
