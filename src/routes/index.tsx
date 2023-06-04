@@ -30,7 +30,7 @@ export const publicRoutes = ({
       },
       { path: `register`, element: <div>register</div> },
       {
-        path: `login`,
+        path: `sign-in`,
         element: !isAutenticated ? (
           <Login />
         ) : (
@@ -55,7 +55,7 @@ export const privateRoutes = ({
         element: isAutenticated ? (
           <Operations />
         ) : (
-          <Navigate to="/login" replace />
+          <Navigate to="/sign-in" replace />
         ),
       },
       {
@@ -63,7 +63,7 @@ export const privateRoutes = ({
         element: isAutenticated ? (
           <Dashboard />
         ) : (
-          <Navigate to="/login" replace />
+          <Navigate to="/sign-in" replace />
         ),
       },
     ],

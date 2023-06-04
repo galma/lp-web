@@ -30,7 +30,7 @@ const Login: React.FC = () => {
         password: data.password,
       } as LoginCredentialsDTO,
       {
-        onSuccess: (data) => {
+        onSuccess: (data: any) => {
           handleSignIn({ id: data?.id, balance: data.remainingBalance });
           navigate("/app");
         },
@@ -39,9 +39,12 @@ const Login: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="max-w-md mx-auto bg-white rounded-lg shadow p-6 space-y-4"
+    >
       <div>
-        <label>Email</label>
+        <label className="block text-gray-700 font-bold">Email</label>
         <input
           type="text"
           {...register("email", {
@@ -51,30 +54,45 @@ const Login: React.FC = () => {
               message: "Invalid email address",
             },
           })}
+          className={`w-full border ${
+            errors.email ? "border-red-500" : "border-gray-300"
+          } rounded py-2 px-4 mb-2`}
         />
-        {errors.email && <span>{errors.email.message}</span>}
+        {errors.email && (
+          <span className="text-red-500 text-sm">{errors.email.message}</span>
+        )}
       </div>
 
       <div>
-        <label>Password</label>
+        <label className="block text-gray-700 font-bold">Password</label>
         <input
           type="password"
           {...register("password", {
             required: "Password is required",
           })}
+          className={`w-full border ${
+            errors.password ? "border-red-500" : "border-gray-300"
+          } rounded py-2 px-4 mb-2`}
         />
-        {errors.password && <span>{errors.password.message}</span>}
+        {errors.password && (
+          <span className="text-red-500 text-sm">
+            {errors.password.message}
+          </span>
+        )}
       </div>
 
-      <button type="submit">Login</button>
+      <button
+        type="submit"
+        className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
+      >
+        Login
+      </button>
 
-      <>
-        {login?.error && (
-          <div style={{ color: "red" }}>
-            {JSON.stringify(login.error, null, 2)}
-          </div>
-        )}
-      </>
+      {login?.error && (
+        <div style={{ color: "red" }}>
+          {JSON.stringify(login.error, null, 2)}
+        </div>
+      )}
     </form>
   );
 };

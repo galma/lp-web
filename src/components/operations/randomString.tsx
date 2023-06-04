@@ -17,22 +17,29 @@ const RandomString: React.FC = () => {
   >(generateRandomString);
 
   const onSubmit = async (data: FormData) => {
-    const result = await mutation.mutateAsync({ userId });
+    await mutation.mutateAsync({ userId });
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <p> Generate a random string</p>
-      <button type="submit">Submit Operation</button>
+    <div className="max-w-md mx-auto bg-white rounded-lg shadow p-6 space-y-4">
+      <p className="text-lg font-semibold">Operation: Random string</p>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <button
+          type="submit"
+          className="bg-blue-500 text-white px-4 py-2 rounded shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+          Submit Random String Operation
+        </button>
 
-      {mutation.isSuccess && (
-        <div>
-          <p>Operation completed successfully!</p>
-          <p>Result: {mutation.data?.result}</p>
-          <p>Remaining Balance: {mutation.data?.remainingBalance}</p>
-        </div>
-      )}
-    </form>
+        {mutation.isSuccess && (
+          <div className="mt-4">
+            <p>Operation completed successfully!</p>
+            <p>Result: {mutation.data?.result}</p>
+            <p>Remaining Balance: {mutation.data?.remainingBalance}</p>
+          </div>
+        )}
+      </form>
+    </div>
   );
 };
 

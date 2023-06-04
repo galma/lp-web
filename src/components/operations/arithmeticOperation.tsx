@@ -51,11 +51,13 @@ const ArithmeticOperation: React.FC<OperationProps> = ({
   };
 
   return (
-    <>
-      <p>Operation: {operationName}</p>
+    <div className="max-w-md mx-auto bg-white rounded-lg shadow p-6 space-y-4">
+      <p className="text-lg font-semibold">Operation: {operationName}</p>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <label>Number 1:</label>
+        <div className="flex items-center">
+          <label htmlFor="number1" className="mr-2">
+            Number 1:
+          </label>
           <Controller
             name="number1"
             defaultValue={0}
@@ -67,14 +69,25 @@ const ArithmeticOperation: React.FC<OperationProps> = ({
                 validate: customValidationNumber1,
               }),
             }}
-            render={({ field }) => <input type="number" {...field} />}
+            render={({ field }) => (
+              <input
+                id="number1"
+                type="number"
+                {...field}
+                className="w-20 px-2 py-1 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+              />
+            )}
           />
-          {errors.number1 && <p>{errors.number1.message}</p>}{" "}
+          {errors.number1 && (
+            <p className="text-red-500">{errors.number1.message}</p>
+          )}
         </div>
 
         {requiresTwoNumbers && (
-          <div>
-            <label>Number 2:</label>
+          <div className="flex items-center">
+            <label htmlFor="number2" className="mr-2">
+              Number 2:
+            </label>
             <Controller
               name="number2"
               control={control}
@@ -86,23 +99,37 @@ const ArithmeticOperation: React.FC<OperationProps> = ({
                   validate: customValidationNumber2,
                 }),
               }}
-              render={({ field }) => <input type="number" {...field} />}
+              render={({ field }) => (
+                <input
+                  id="number2"
+                  type="number"
+                  {...field}
+                  className="w-20 px-2 py-1 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+                />
+              )}
             />
-            {errors.number2 && <p>{errors.number2.message}</p>}{" "}
+            {errors.number2 && (
+              <p className="text-red-500">{errors.number2.message}</p>
+            )}
           </div>
         )}
 
-        <button type="submit">Submit {operationName} Operation</button>
+        <button
+          type="submit"
+          className="bg-blue-500 text-white px-4 py-2 rounded shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+          Submit {operationName} Operation
+        </button>
 
         {mutation.isSuccess && (
-          <div>
+          <div className="mt-4">
             <p>Operation completed successfully!</p>
             <p>Result: {mutation.data?.result}</p>
             <p>Remaining Balance: {mutation.data?.remainingBalance}</p>
           </div>
         )}
       </form>
-    </>
+    </div>
   );
 };
 

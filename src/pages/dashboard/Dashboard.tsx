@@ -18,19 +18,25 @@ const Dashboard: React.FC = () => {
   };
 
   return (
-    <div>
-      <h1>Dashboard</h1>
-      <button onClick={onLogout}>Logout</button>
-      <div>
+    <div className="max-w-md mx-auto bg-white rounded-lg shadow p-6 space-y-4">
+      <h1 className="text-2xl font-bold text-center">Dashboard</h1>
+      <button
+        onClick={onLogout}
+        className="w-full bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded"
+      >
+        Logout
+      </button>
+      <div className="text-center">
         {/* Welcome {user.data?.firstName} {user.data?.lastName} */}
         Welcome
       </div>
-      <ul>
+      <ul className="space-y-2">
         <li>
           <button
             onClick={() => {
               navigate("/operations");
             }}
+            className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
           >
             New Operation
           </button>
@@ -40,6 +46,7 @@ const Dashboard: React.FC = () => {
             onClick={() => {
               navigate("/user-records");
             }}
+            className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded"
           >
             User Records
           </button>
