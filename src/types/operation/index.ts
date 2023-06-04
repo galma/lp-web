@@ -36,3 +36,27 @@ export interface OperationProps {
   validation?: (data: NumericOperationFormData) => boolean;
   requiresTwoNumbers: boolean;
 }
+
+export type UserRecordsDTO = {
+  page: number;
+  limit: number;
+  userId: string;
+};
+
+export type UserRecordsResponse = {
+  records: UserRecord[];
+  total: number;
+  totalPages: number;
+  previousPage: boolean;
+  nextPage: boolean;
+};
+
+export type UserRecord = {
+  id: string;
+  operation: string;
+  userBalance: number;
+  amount: number;
+  operationResponse: string;
+  date: Date;
+  userId: string;
+};

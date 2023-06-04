@@ -25,7 +25,6 @@ const ArithmeticOperation: React.FC<OperationProps> = ({
   } = useForm<NumericOperationFormData>();
 
   const { userId } = useContext(UserContext);
-  debugger;
 
   const mutation = useMutation<
     NumericOperationResponse,

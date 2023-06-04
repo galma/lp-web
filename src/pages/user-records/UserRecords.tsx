@@ -3,12 +3,15 @@ import * as React from "react";
 import {
   ColumnDef,
   PaginationState,
-  createColumnHelper,
   flexRender,
   getCoreRowModel,
   useReactTable,
 } from "@tanstack/react-table";
 import { useQuery } from "@tanstack/react-query";
+import { UserRecordsDTO, UserRecordsResponse } from "@/types/operation";
+import { getUserRecords } from "@/api/users/getUserRecords";
+import { useContext, useState } from "react";
+import { UserContext } from "@/contexts/UserContext";
 
 export type Record = {
   id: string;
@@ -19,8 +22,6 @@ export type Record = {
 };
 
 const UserRecord = () => {
-  const rerender = React.useReducer(() => ({}), {})[1];
-
   const columns = React.useMemo<ColumnDef<Record>[]>(
     () => [
       {
@@ -52,227 +53,10 @@ const UserRecord = () => {
     []
   );
 
-  const [{ pageIndex, pageSize }, setPagination] =
-    React.useState<PaginationState>({
-      pageIndex: 0,
-      pageSize: 10,
-    });
-
-  const fetchDataOptions = {
-    pageIndex,
-    pageSize,
-  };
-
-  const fetchData = async (options: {
-    pageIndex: number;
-    pageSize: number;
-  }) => {
-    // Simulate some network latency
-    await new Promise((r) => setTimeout(r, 500));
-
-    return {
-      rows: [
-        {
-          id: "65655057-b342-4a4f-88a1-49245378a610",
-          userBalance: "89.00",
-          amount: "1.50",
-          operationResponse: "1",
-          date: "2023-05-29T22:32:29.152Z",
-        },
-        {
-          id: "65655057-b342-4a4f-88a1-49245378a610",
-          userBalance: "89.00",
-          amount: "1.50",
-          operationResponse: "1",
-          date: "2023-05-29T22:32:29.152Z",
-        },
-        {
-          id: "65655057-b342-4a4f-88a1-49245378a610",
-          userBalance: "89.00",
-          amount: "1.50",
-          operationResponse: "1",
-          date: "2023-05-29T22:32:29.152Z",
-        },
-        {
-          id: "65655057-b342-4a4f-88a1-49245378a610",
-          userBalance: "89.00",
-          amount: "1.50",
-          operationResponse: "1",
-          date: "2023-05-29T22:32:29.152Z",
-        },
-        {
-          id: "65655057-b342-4a4f-88a1-49245378a610",
-          userBalance: "89.00",
-          amount: "1.50",
-          operationResponse: "1",
-          date: "2023-05-29T22:32:29.152Z",
-        },
-        {
-          id: "65655057-b342-4a4f-88a1-49245378a610",
-          userBalance: "89.00",
-          amount: "1.50",
-          operationResponse: "1",
-          date: "2023-05-29T22:32:29.152Z",
-        },
-        {
-          id: "65655057-b342-4a4f-88a1-49245378a610",
-          userBalance: "89.00",
-          amount: "1.50",
-          operationResponse: "1",
-          date: "2023-05-29T22:32:29.152Z",
-        },
-        {
-          id: "65655057-b342-4a4f-88a1-49245378a610",
-          userBalance: "89.00",
-          amount: "1.50",
-          operationResponse: "1",
-          date: "2023-05-29T22:32:29.152Z",
-        },
-        {
-          id: "65655057-b342-4a4f-88a1-49245378a610",
-          userBalance: "89.00",
-          amount: "1.50",
-          operationResponse: "1",
-          date: "2023-05-29T22:32:29.152Z",
-        },
-        {
-          id: "65655057-b342-4a4f-88a1-49245378a610",
-          userBalance: "89.00",
-          amount: "1.50",
-          operationResponse: "1",
-          date: "2023-05-29T22:32:29.152Z",
-        },
-        {
-          id: "65655057-b342-4a4f-88a1-49245378a610",
-          userBalance: "89.00",
-          amount: "1.50",
-          operationResponse: "1",
-          date: "2023-05-29T22:32:29.152Z",
-        },
-        {
-          id: "65655057-b342-4a4f-88a1-49245378a610",
-          userBalance: "89.00",
-          amount: "1.50",
-          operationResponse: "1",
-          date: "2023-05-29T22:32:29.152Z",
-        },
-        {
-          id: "65655057-b342-4a4f-88a1-49245378a610",
-          userBalance: "89.00",
-          amount: "1.50",
-          operationResponse: "1",
-          date: "2023-05-29T22:32:29.152Z",
-        },
-        {
-          id: "65655057-b342-4a4f-88a1-49245378a610",
-          userBalance: "89.00",
-          amount: "1.50",
-          operationResponse: "1",
-          date: "2023-05-29T22:32:29.152Z",
-        },
-        {
-          id: "65655057-b342-4a4f-88a1-49245378a610",
-          userBalance: "89.00",
-          amount: "1.50",
-          operationResponse: "1",
-          date: "2023-05-29T22:32:29.152Z",
-        },
-        {
-          id: "65655057-b342-4a4f-88a1-49245378a610",
-          userBalance: "89.00",
-          amount: "1.50",
-          operationResponse: "1",
-          date: "2023-05-29T22:32:29.152Z",
-        },
-        {
-          id: "65655057-b342-4a4f-88a1-49245378a610",
-          userBalance: "89.00",
-          amount: "1.50",
-          operationResponse: "1",
-          date: "2023-05-29T22:32:29.152Z",
-        },
-        {
-          id: "65655057-b342-4a4f-88a1-49245378a610",
-          userBalance: "89.00",
-          amount: "1.50",
-          operationResponse: "1",
-          date: "2023-05-29T22:32:29.152Z",
-        },
-        {
-          id: "65655057-b342-4a4f-88a1-49245378a610",
-          userBalance: "89.00",
-          amount: "1.50",
-          operationResponse: "1",
-          date: "2023-05-29T22:32:29.152Z",
-        },
-        {
-          id: "65655057-b342-4a4f-88a1-49245378a610",
-          userBalance: "89.00",
-          amount: "1.50",
-          operationResponse: "1",
-          date: "2023-05-29T22:32:29.152Z",
-        },
-        {
-          id: "65655057-b342-4a4f-88a1-49245378a610",
-          userBalance: "89.00",
-          amount: "1.50",
-          operationResponse: "1",
-          date: "2023-05-29T22:32:29.152Z",
-        },
-        {
-          id: "65655057-b342-4a4f-88a1-49245378a610",
-          userBalance: "89.00",
-          amount: "1.50",
-          operationResponse: "1",
-          date: "2023-05-29T22:32:29.152Z",
-        },
-        {
-          id: "65655057-b342-4a4f-88a1-49245378a610",
-          userBalance: "89.00",
-          amount: "1.50",
-          operationResponse: "1",
-          date: "2023-05-29T22:32:29.152Z",
-        },
-        {
-          id: "65655057-b342-4a4f-88a1-49245378a610",
-          userBalance: "89.00",
-          amount: "1.50",
-          operationResponse: "1",
-          date: "2023-05-29T22:32:29.152Z",
-        },
-        {
-          id: "65655057-b342-4a4f-88a1-49245378a610",
-          userBalance: "89.00",
-          amount: "1.50",
-          operationResponse: "1",
-          date: "2023-05-29T22:32:29.152Z",
-        },
-        {
-          id: "65655057-b342-4a4f-88a1-49245378a610",
-          userBalance: "89.00",
-          amount: "1.50",
-          operationResponse: "1",
-          date: "2023-05-29T22:32:29.152Z",
-        },
-        {
-          id: "65655057-b342-4a4f-88a1-49245378a610",
-          userBalance: "89.00",
-          amount: "1.50",
-          operationResponse: "1",
-          date: "2023-05-29T22:32:29.152Z",
-        },
-      ],
-      pageCount: 15,
-    };
-  };
-
-  const dataQuery = useQuery(
-    ["data", fetchDataOptions],
-    () => fetchData(fetchDataOptions),
-    {}
-  );
-
-  const defaultData = React.useMemo(() => [], []);
+  const [{ pageIndex, pageSize }, setPagination] = useState<PaginationState>({
+    pageIndex: 0,
+    pageSize: 10,
+  });
 
   const pagination = React.useMemo(
     () => ({
@@ -282,17 +66,34 @@ const UserRecord = () => {
     [pageIndex, pageSize]
   );
 
+  const { userId } = useContext(UserContext);
+
+  const dataQuery = useQuery(
+    [
+      "userRecords",
+      { userId, page: pagination.pageIndex, limit: pagination.pageSize },
+    ],
+    () =>
+      getUserRecords({
+        userId,
+        page: pagination.pageIndex,
+        limit: pagination.pageSize,
+      } as UserRecordsDTO),
+    {}
+  );
+
+  const defaultData = React.useMemo(() => [], []);
+
   const table = useReactTable({
-    data: dataQuery.data?.rows ?? defaultData,
+    data: dataQuery?.data?.records ?? defaultData,
     columns,
-    pageCount: dataQuery.data?.pageCount ?? -1,
+    pageCount: dataQuery?.data?.totalPages ?? -1,
     state: {
       pagination,
     },
     onPaginationChange: setPagination,
     getCoreRowModel: getCoreRowModel(),
     manualPagination: true,
-    // getPaginationRowModel: getPaginationRowModel(), // If only doing manual pagination, you don't need this
     debugTable: true,
   });
 
@@ -402,11 +203,6 @@ const UserRecord = () => {
         </select>
         {dataQuery.isFetching ? "Loading..." : null}
       </div>
-      <div>{table.getRowModel().rows.length} Rows</div>
-      <div>
-        <button onClick={() => rerender()}>Force Rerender</button>
-      </div>
-      <pre>{JSON.stringify(pagination, null, 2)}</pre>
     </div>
   );
 };
