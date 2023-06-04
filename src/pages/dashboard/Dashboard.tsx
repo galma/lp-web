@@ -29,7 +29,7 @@ const Dashboard: React.FC = () => {
         <li>
           <button
             onClick={() => {
-              navigate("/app/operations");
+              navigate("/operations");
             }}
           >
             New Operation
@@ -38,7 +38,7 @@ const Dashboard: React.FC = () => {
         <li>
           <button
             onClick={() => {
-              navigate("/app/user-records");
+              navigate("/user-records");
             }}
           >
             User Records
