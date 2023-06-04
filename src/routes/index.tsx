@@ -1,4 +1,5 @@
 import { UserContext } from "@/contexts/UserContext";
+import Layout from "@/pages/layout/Layout";
 import { useUser } from "@/providers/auth";
 import React, { useContext } from "react";
 import { Navigate, Outlet, useRoutes } from "react-router-dom";
@@ -54,7 +55,9 @@ export const privateRoutes = ({
       {
         path: `/operations`,
         element: isAutenticated ? (
-          <Operations />
+          <Layout>
+            <Operations />
+          </Layout>
         ) : (
           <Navigate to="/sign-in" replace />
         ),
@@ -62,7 +65,9 @@ export const privateRoutes = ({
       {
         path: `/dashboard`,
         element: isAutenticated ? (
-          <Dashboard />
+          <Layout>
+            <Dashboard />
+          </Layout>
         ) : (
           <Navigate to="/sign-in" replace />
         ),
