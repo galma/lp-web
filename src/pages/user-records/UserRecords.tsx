@@ -100,13 +100,17 @@ const UserRecord = () => {
   return (
     <div className="p-2">
       <div className="h-2" />
-      <table>
+      <table className="w-full">
         <thead>
           {table.getHeaderGroups().map((headerGroup) => (
             <tr key={headerGroup.id}>
               {headerGroup.headers.map((header) => {
                 return (
-                  <th key={header.id} colSpan={header.colSpan}>
+                  <th
+                    key={header.id}
+                    colSpan={header.colSpan}
+                    className="border-b px-4 py-2"
+                  >
                     {header.isPlaceholder ? null : (
                       <div>
                         {flexRender(
@@ -127,7 +131,7 @@ const UserRecord = () => {
               <tr key={row.id}>
                 {row.getVisibleCells().map((cell) => {
                   return (
-                    <td key={cell.id}>
+                    <td key={cell.id} className="border-b px-4 py-2">
                       {flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext()
@@ -194,6 +198,7 @@ const UserRecord = () => {
           onChange={(e) => {
             table.setPageSize(Number(e.target.value));
           }}
+          className="border p-1 rounded"
         >
           {[10, 20, 30, 40, 50].map((pageSize) => (
             <option key={pageSize} value={pageSize}>
