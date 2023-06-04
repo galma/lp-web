@@ -1,5 +1,6 @@
 import { UserContext } from "@/contexts/UserContext";
 import Layout from "@/pages/layout/Layout";
+import SignUp from "@/pages/sign-up/SignUp";
 import { useUser } from "@/providers/auth";
 import React, { useContext } from "react";
 import { Navigate, Outlet, useRoutes } from "react-router-dom";
@@ -30,7 +31,14 @@ export const publicRoutes = ({
           <Navigate to="/dashboard" replace />
         ),
       },
-      { path: `register`, element: <div>register</div> },
+      {
+        path: `sign-up`,
+        element: !isAutenticated ? (
+          <SignUp />
+        ) : (
+          <Navigate to="/dashboard" replace />
+        ),
+      },
       {
         path: `sign-in`,
         element: !isAutenticated ? (
