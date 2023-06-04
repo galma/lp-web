@@ -21,6 +21,7 @@ import {
   registerWithEmailAndPassword,
 } from "@/api/auth/register";
 import { getUser } from "@/api/auth/getUser";
+import { Spinner } from "@/components/spinner/Spinner";
 
 async function handleUserResponse(data: UserResponse) {
   const { token, user } = data;
@@ -62,8 +63,7 @@ const authConfig = {
   LoaderComponent() {
     return (
       <div className="w-screen h-screen flex justify-center items-center">
-        ATR
-        {/* <Spinner size="xl" /> */}
+        <Spinner size="xl" />
       </div>
     );
   },

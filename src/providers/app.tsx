@@ -5,6 +5,7 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "@/libs/react-query";
 import { BrowserRouter } from "react-router-dom";
 import { UserProvider } from "@/contexts/UserContext";
+import { Spinner } from "@/components/spinner/Spinner";
 
 type AppProviderProps = {
   children: React.ReactNode;
@@ -25,23 +26,23 @@ const ErrorFallback = () => {
 
 export const AppProvider = ({ children }: AppProviderProps) => {
   return (
-    // <React.Suspense
-    //   fallback={
-    //     <div className="flex items-center justify-center w-screen h-screen">
-    //       <Spinner size="xl" />
-    //     </div>
-    //   }
-    // >
-    <UserProvider>
-      <ErrorBoundary FallbackComponent={ErrorFallback}>
-        <QueryClientProvider client={queryClient}>
-          {/* {process.env.NODE_ENV !== 'test' && <ReactQueryDevtools />} */}
-          {/* <Notifications /> */}
+    <React.Suspense
+      fallback={
+        <div className="flex items-center justify-center w-screen h-screen">
+          <Spinner size="xl" />
+        </div>
+      }
+    >
+      <UserProvider>
+        <ErrorBoundary FallbackComponent={ErrorFallback}>
+          <QueryClientProvider client={queryClient}>
+            {/* {process.env.NODE_ENV !== 'test' && <ReactQueryDevtools />} */}
+            {/* <Notifications /> */}
 
-          <BrowserRouter>{children}</BrowserRouter>
-        </QueryClientProvider>
-      </ErrorBoundary>
-    </UserProvider>
-    // </React.Suspense>
+            <BrowserRouter>{children}</BrowserRouter>
+          </QueryClientProvider>
+        </ErrorBoundary>
+      </UserProvider>
+    </React.Suspense>
   );
 };

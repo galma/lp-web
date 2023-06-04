@@ -1,6 +1,8 @@
-import Dashboard from "@/pages/dashboard/Dashboard";
-import Operations from "@/pages/operations/Operations";
+import React from "react";
 import { Navigate, Outlet } from "react-router-dom";
+
+const Dashboard = React.lazy(() => import("@/pages/dashboard/Dashboard"));
+const Operations = React.lazy(() => import("@/pages/operations/Operations"));
 
 const ProtectedRoutesWrapper = () => {
   return <Outlet />;
