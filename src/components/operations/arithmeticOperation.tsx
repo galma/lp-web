@@ -53,69 +53,73 @@ const ArithmeticOperation: React.FC<OperationProps> = ({
     <div className="max-w-md mx-auto bg-white rounded-lg shadow p-6 space-y-4">
       <p className="text-lg font-semibold">Operation: {operationName}</p>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="flex items-center">
-          <label htmlFor="number1" className="mr-2">
-            Number 1:
-          </label>
-          <Controller
-            name="number1"
-            defaultValue={0}
-            control={control}
-            //@ts-ignore
-            rules={{
-              required: true,
-              ...(customValidationNumber1 && {
-                validate: customValidationNumber1,
-              }),
-            }}
-            render={({ field }) => (
-              <input
-                id="number1"
-                type="number"
-                {...field}
-                className="w-20 px-2 py-1 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
-              />
-            )}
-          />
-          {errors.number1 && (
-            <p className="text-red-500">{errors.number1.message}</p>
-          )}
-        </div>
-
-        {requiresTwoNumbers && (
+        <div className="flex flex-col">
           <div className="flex items-center">
-            <label htmlFor="number2" className="mr-2">
-              Number 2:
+            <label htmlFor="number1" className="mr-2">
+              Number 1:
             </label>
             <Controller
-              name="number2"
-              control={control}
+              name="number1"
               defaultValue={0}
+              control={control}
               //@ts-ignore
               rules={{
                 required: true,
-                ...(customValidationNumber2 && {
-                  validate: customValidationNumber2,
+                ...(customValidationNumber1 && {
+                  validate: customValidationNumber1,
                 }),
               }}
               render={({ field }) => (
                 <input
-                  id="number2"
+                  id="number1"
                   type="number"
                   {...field}
                   className="w-20 px-2 py-1 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
                 />
               )}
             />
+          </div>
+          {errors.number1 && (
+            <p className="text-red-500 mt-2">{errors.number1.message}</p>
+          )}
+        </div>
+
+        {requiresTwoNumbers && (
+          <div className="flex flex-col">
+            <div className="flex">
+              <label htmlFor="number2" className="mr-2">
+                Number 2:
+              </label>
+              <Controller
+                name="number2"
+                control={control}
+                defaultValue={0}
+                //@ts-ignore
+                rules={{
+                  required: true,
+                  ...(customValidationNumber2 && {
+                    validate: customValidationNumber2,
+                  }),
+                }}
+                render={({ field }) => (
+                  <input
+                    id="number2"
+                    type="number"
+                    {...field}
+                    className="w-20 px-2 py-1 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+                  />
+                )}
+              />
+            </div>
             {errors.number2 && (
-              <p className="text-red-500">{errors.number2.message}</p>
+              <p className="text-red-500 mt-2">{errors.number2.message}</p>
             )}
           </div>
         )}
 
         <button
           type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="bg-blue-500 text-white px-4 py-2 rounded shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 mt-10"
         >
           Submit {operationName} Operation
         </button>

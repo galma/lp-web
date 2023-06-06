@@ -5,8 +5,6 @@ import { UserResponse } from "@/types/auth";
 export type RegisterCredentialsDTO = {
   email: string;
   password: string;
-  firstName: string;
-  lastName: string;
 };
 
 export const registerWithEmailAndPassword = async (

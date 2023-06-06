@@ -8,8 +8,6 @@ import { useNavigate } from "react-router-dom";
 interface SignupFormInputs {
   email: string;
   password: string;
-  firstName: string;
-  lastName: string;
 }
 
 const Signup: React.FC = () => {
@@ -30,8 +28,6 @@ const Signup: React.FC = () => {
       {
         email: data.email,
         password: data.password,
-        firstName: data.firstName,
-        lastName: data.lastName,
       } as RegisterCredentialsDTO,
       {
         onSuccess: (data: any) => {
@@ -85,42 +81,6 @@ const Signup: React.FC = () => {
         {errors.password && (
           <span className="text-red-500 text-sm">
             {errors.password.message}
-          </span>
-        )}
-      </div>
-
-      <div>
-        <label className="block text-gray-700 font-bold">First Name</label>
-        <input
-          type="text"
-          {...register("firstName", {
-            required: "First name is required",
-          })}
-          className={`w-full border ${
-            errors.firstName ? "border-red-500" : "border-gray-300"
-          } rounded py-2 px-4 mb-2`}
-        />
-        {errors.firstName && (
-          <span className="text-red-500 text-sm">
-            {errors.firstName.message}
-          </span>
-        )}
-      </div>
-
-      <div>
-        <label className="block text-gray-700 font-bold">Last Name</label>
-        <input
-          type="text"
-          {...register("lastName", {
-            required: "Last name is required",
-          })}
-          className={`w-full border ${
-            errors.lastName ? "border-red-500" : "border-gray-300"
-          } rounded py-2 px-4 mb-2`}
-        />
-        {errors.lastName && (
-          <span className="text-red-500 text-sm">
-            {errors.lastName.message}
           </span>
         )}
       </div>

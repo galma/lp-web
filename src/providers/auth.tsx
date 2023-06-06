@@ -4,17 +4,6 @@ import {
 } from "@/api/auth/login";
 import { AuthUser, UserResponse } from "@/types/auth";
 import { configureAuth } from "react-query-auth";
-
-// import { Spinner } from '@/components/Elements';
-// import {
-//   loginWithEmailAndPassword,
-//   getUser,
-//   registerWithEmailAndPassword,
-//   UserResponse,
-//   LoginCredentialsDTO,
-//   RegisterCredentialsDTO,
-//   AuthUser,
-// } from '@/features/auth';
 import storage from "@/libs/storage";
 import {
   RegisterCredentialsDTO,
