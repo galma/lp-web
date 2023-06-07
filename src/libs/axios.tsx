@@ -23,7 +23,9 @@ interface Dictionary<T> {
 }
 const errorTypeMessages: Dictionary<string> = {
   NotEnoughBalanceError: "Not Enough Balance",
-  UnauthorizedError: "Invalid Credentials",
+  UnauthorizedError: "User is Not Authorized",
+  InvalidCredentialsError: "Invalid Credentials",
+  UserAlreadyExistsError: "User already exists",
 };
 
 axios.interceptors.response.use(
