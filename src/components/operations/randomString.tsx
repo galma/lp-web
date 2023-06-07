@@ -4,6 +4,7 @@ import { StringOperationResponse } from "@/types/operation";
 import { useMutation } from "@tanstack/react-query";
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 const RandomString: React.FC = () => {
   const { handleSubmit, control } = useForm<FormData>();
@@ -17,7 +18,7 @@ const RandomString: React.FC = () => {
   >(generateRandomString);
 
   const onSubmit = async (data: FormData) => {
-    await mutation.mutateAsync({ userId });
+    mutation.mutate({ userId });
   };
 
   return (

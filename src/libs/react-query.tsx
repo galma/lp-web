@@ -6,11 +6,16 @@ import {
   DefaultOptions,
 } from "@tanstack/react-query";
 import { PromiseValue } from "type-fest";
+import { toast } from "react-toastify";
 
 const queryConfig: DefaultOptions = {
   queries: {
     useErrorBoundary: false,
     refetchOnWindowFocus: false,
+    retry: false,
+  },
+  mutations: {
+    useErrorBoundary: false,
     retry: false,
   },
 };

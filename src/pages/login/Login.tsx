@@ -87,12 +87,6 @@ const Login: React.FC = () => {
       >
         Login
       </button>
-
-      {login?.error && (
-        <div style={{ color: "red" }}>
-          {JSON.stringify(login.error, null, 2)}
-        </div>
-      )}
     </form>
   );
 };

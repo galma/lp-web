@@ -6,6 +6,8 @@ import { queryClient } from "@/libs/react-query";
 import { BrowserRouter } from "react-router-dom";
 import { UserProvider } from "@/contexts/UserContext";
 import { Spinner } from "@/components/spinner/Spinner";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 type AppProviderProps = {
   children: React.ReactNode;
@@ -30,6 +32,7 @@ export const AppProvider = ({ children }: AppProviderProps) => {
         </div>
       }
     >
+      <ToastContainer />
       <UserProvider>
         <ErrorBoundary FallbackComponent={ErrorFallback}>
           <QueryClientProvider client={queryClient}>

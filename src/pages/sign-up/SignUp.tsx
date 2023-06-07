@@ -91,12 +91,6 @@ const Signup: React.FC = () => {
       >
         Sign Up
       </button>
-
-      {signup?.error && (
-        <div style={{ color: "red" }}>
-          {JSON.stringify(signup.error, null, 2)}
-        </div>
-      )}
     </form>
   );
 };

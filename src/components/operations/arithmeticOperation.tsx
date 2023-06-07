@@ -30,7 +30,12 @@ const ArithmeticOperation: React.FC<OperationProps> = ({
     NumericOperationResponse,
     unknown,
     TwoNumberOperationDTO | OneNumberOperationDTO
-  >(operation);
+  >(operation, {
+    onError: (e) => {
+      console.log(e);
+      //nothing to display in particular. Covered with the toast message
+    },
+  });
 
   const onSubmit = async (data: NumericOperationFormData) => {
     if (validation && !validation(data)) {
@@ -46,7 +51,7 @@ const ArithmeticOperation: React.FC<OperationProps> = ({
       }),
     };
 
-    await mutation.mutateAsync(dto);
+    mutation.mutate(dto);
   };
 
   return (
