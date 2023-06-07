@@ -1,46 +1,33 @@
-# Getting Started with Create React App
+# LP-WEB
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a README.md file for the project LP-WEB. It provides instructions on how to set up and run the project.
 
-## Available Scripts
+## Installation
 
-In the project directory, you can run:
+To install the project dependencies, run the following command:
 
-### `npm start`
+```
+npm install
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Configuration
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Configure the environment variable `REACT_APP_API_URL` with the API URL. It can be either a local instance or the live version at https://y1ibcj2a6l.execute-api.us-east-1.amazonaws.com/dev/v1. CORS has been enabled on the API to allow consumption from any domain. However, please note that in a production application, CORS should be strictly limited to specific domains. In this case, I have chosen to enable CORS for the purpose of allowing the API to be used from any domain without the need to manipulate the local DNS settings, such as modifying the host file of the operating system.
 
-### `npm test`
+## Running the Project
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+To start the project, run the following command:
 
-### `npm run build`
+```
+npm run start
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Live Version
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The project is deployed on Vercel and can be accessed at the following URL: `https://lp-web-ten.vercel.app/`.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Improvements
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- Unit testing was not included due to time constraints.
+- The naming of components and folder structure may need to be reviewed and adjusted for better consistency.
+- Not all the possible typed errors have a typed message
