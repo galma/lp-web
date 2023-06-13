@@ -43,6 +43,11 @@ export type UserRecordsDTO = {
   userId: string;
 };
 
+export type DeleteUserRecordDTO = {
+  userId: string;
+  recordId: string;
+};
+
 export type UserRecordsResponse = {
   records: UserRecord[];
   total: number;

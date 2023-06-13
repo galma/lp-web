@@ -7,11 +7,12 @@ import {
   getCoreRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import { UserRecordsDTO, UserRecordsResponse } from "@/types/operation";
 import { getUserRecords } from "@/api/users/getUserRecords";
 import { useContext, useState } from "react";
 import { UserContext } from "@/contexts/UserContext";
+import { deleteUserRecord } from "@/api/users/deleteUserRecord";
 
 export type Record = {
   id: string;
@@ -21,7 +22,24 @@ export type Record = {
   date: Date;
 };
 
+const useDeleteRecordMutation = () => {
+  const mutation = useMutation(deleteUserRecord);
+
+  const deleteRecord = async (recordId: string, userId: string) => {
+    await mutation.mutateAsync({ recordId, userId });
+  };
+
+  return {
+    deleteRecord,
+    isLoading: mutation.isLoading,
+    isError: mutation.isError,
+    error: mutation.error,
+  };
+};
+
 const UserRecord = () => {
+  const { deleteRecord } = useDeleteRecordMutation();
+
   const columns = React.useMemo<ColumnDef<Record>[]>(
     () => [
       {
@@ -48,6 +66,18 @@ const UserRecord = () => {
         accessorKey: "date",
         header: () => "Date",
         footer: (info) => info.column.id,
+      },
+      {
+        accessorKey: "delete",
+        header: () => "Actions",
+        cell: (info) => (
+          <button
+            className="border rounded p-1"
+            onClick={() => handleDelete(info.row.original.id, userId)}
+          >
+            Delete
+          </button>
+        ),
       },
     ],
     []
@@ -96,6 +126,11 @@ const UserRecord = () => {
     manualPagination: true,
     debugTable: true,
   });
+
+  const handleDelete = async (recordId: string, userId: string) => {
+    await deleteRecord(recordId, userId);
+    dataQuery.refetch();
+  };
 
   return (
     <div className="p-2">
