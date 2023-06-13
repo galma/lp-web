@@ -3,6 +3,7 @@ import * as React from "react";
 import {
   ColumnDef,
   PaginationState,
+  SortingState,
   flexRender,
   getCoreRowModel,
   useReactTable,
@@ -70,6 +71,7 @@ const UserRecord = () => {
       {
         accessorKey: "delete",
         header: () => "Actions",
+        enableSorting: false,
         cell: (info) => (
           <button
             className="border rounded p-1"
@@ -96,18 +98,28 @@ const UserRecord = () => {
     [pageIndex, pageSize]
   );
 
+  const [sorting, setSorting] = React.useState<SortingState>([]);
+
+  const sortingParam = React.useMemo(() => sorting, [sorting]);
+
   const { userId } = useContext(UserContext);
 
   const dataQuery = useQuery(
     [
       "userRecords",
-      { userId, page: pagination.pageIndex, limit: pagination.pageSize },
+      {
+        userId,
+        page: pagination.pageIndex,
+        limit: pagination.pageSize,
+        sorting: sortingParam,
+      },
     ],
     () =>
       getUserRecords({
         userId,
         page: pagination.pageIndex,
         limit: pagination.pageSize,
+        sorting: sortingParam,
       } as UserRecordsDTO),
     {}
   );
@@ -120,11 +132,13 @@ const UserRecord = () => {
     pageCount: dataQuery?.data?.totalPages ?? -1,
     state: {
       pagination,
+      sorting,
     },
+    onSortingChange: setSorting,
     onPaginationChange: setPagination,
     getCoreRowModel: getCoreRowModel(),
     manualPagination: true,
-    debugTable: true,
+    debugTable: false,
   });
 
   const handleDelete = async (recordId: string, userId: string) => {
@@ -142,17 +156,24 @@ const UserRecord = () => {
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   return (
-                    <th
-                      key={header.id}
-                      colSpan={header.colSpan}
-                      className="border-b px-4 py-2"
-                    >
+                    <th key={header.id} colSpan={header.colSpan}>
                       {header.isPlaceholder ? null : (
-                        <div>
+                        <div
+                          {...{
+                            className: header.column.getCanSort()
+                              ? "cursor-pointer select-none"
+                              : "",
+                            onClick: header.column.getToggleSortingHandler(),
+                          }}
+                        >
                           {flexRender(
                             header.column.columnDef.header,
                             header.getContext()
                           )}
+                          {{
+                            asc: " 🔼",
+                            desc: " 🔽",
+                          }[header.column.getIsSorted() as string] ?? null}
                         </div>
                       )}
                     </th>

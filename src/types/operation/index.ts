@@ -41,6 +41,7 @@ export type UserRecordsDTO = {
   page: number;
   limit: number;
   userId: string;
+  sorting: any;
 };
 
 export type DeleteUserRecordDTO = {

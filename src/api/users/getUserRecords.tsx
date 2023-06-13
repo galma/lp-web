@@ -16,6 +16,10 @@ export const getUserRecords = async (
     qs.push(`limit=${data.limit}`);
   }
 
+  if (data.sorting?.length > 0) {
+    qs.push(`orderby=${data.sorting[0].id}-${data.sorting[0].desc}`);
+  }
+
   if (qs.length > 0) {
     url = url + "?" + qs.join("&");
   }
