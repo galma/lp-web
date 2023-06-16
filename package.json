@@ -5,8 +5,6 @@
   "dependencies": {
     "@tanstack/react-query": "^4.29.7",
     "@tanstack/react-table": "^8.9.1",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.5.2",
     "@types/node": "^16.18.32",
@@ -31,9 +29,7 @@
   "scripts": {
     "start": "craco start",
     "build": "craco build",
-    "test": "craco test",
-    "eject": "craco eject",
-    "prepare": "husky install"
+    "test": "jest --no-cache --config jest.config.js"
   },
   "eslintConfig": {
     "extends": [
@@ -55,13 +51,29 @@
   },
   "devDependencies": {
     "@craco/craco": "^7.1.0",
+    "@testing-library/jest-dom": "^5.16.5",
+    "@testing-library/react": "^14.0.0",
     "autoprefixer": "^10.4.14",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-plugin-module-resolver": "^5.0.0",
     "husky": "^8.0.3",
+    "identity-obj-proxy": "^3.0.0",
+    "jest-environment-jsdom": "^29.5.0",
     "lint-staged": "^13.2.2",
     "postcss": "^8.4.24",
-    "prettier": "2.8.8"
+    "prettier": "2.8.8",
+    "ts-jest": "^29.1.0"
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"
+  },
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(css|less)$": "identity-obj-proxy",
+      "^@(.*)$": "<rootDir>/src"
+    },
+    "transform": {
+      "^.+\\.(js|jsx|ts|tsx)$": "ts-jest"
+    }
   }
 }

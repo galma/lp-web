@@ -44,7 +44,9 @@ const Login: React.FC = () => {
       className="max-w-md mx-auto bg-white rounded-lg shadow p-6 space-y-4"
     >
       <div>
-        <label className="block text-gray-700 font-bold">Email</label>
+        <label className="block text-gray-700 font-bold" aria-label="Email">
+          Email
+        </label>
         <input
           type="text"
           {...register("email", {
@@ -64,7 +66,9 @@ const Login: React.FC = () => {
       </div>
 
       <div>
-        <label className="block text-gray-700 font-bold">Password</label>
+        <label className="block text-gray-700 font-bold" aria-label="Password">
+          Password
+        </label>
         <input
           type="password"
           {...register("password", {
